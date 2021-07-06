@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: git-source
+spec:
+  type: git
+  params:
+    - name: url
+      value: https://github.com/jonggyoukim/openshift-cicd-demo
+    - name: revision
+      value: master
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: tekton-image
+spec:
+  type: image
+  params:
+    - name: url
+      value: shiftyou/tekton-app:latest

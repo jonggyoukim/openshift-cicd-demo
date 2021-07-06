@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: build3-bc
+spec:
+  runPolicy: Serial
+
+  source:
+    type: Git
+    git:
+      uri: https://github.com/jonggyoukim/openshift-cicd-demo.git
+
+
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+
+
+  output:
+    to:
+      kind: DockerImage
+      name: "shiftyou/build3-app:last"
+    pushSecret:
+      name: dockerhub
+
+
+  postCommit:
+      script: "ls"
+

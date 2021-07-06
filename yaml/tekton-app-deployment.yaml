@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-app
+  labels:
+    app: tekton-app
+spec:
+  selector:
+    matchLabels:
+      app: tekton-app
+
+  template:
+    metadata:
+      labels:
+        app: tekton-app
+    spec:
+      containers:
+      - name: tekton-app
+        image: shiftyou/tekton-app
+        env:
+        - name: MYSQL_SERVICE_HOST
+          value: demo-mysql
+        ports:
+        - containerPort: 8080
+          name: tekton-app

@@ -1,0 +1,6 @@
+node('agent') {
+  stage 'build'
+  openshiftBuild(buildConfig: 'build1', showBuildLogs: 'true')
+  stage 'deploy'
+  openshiftDeploy(deploymentConfig: 'demo-git')
+}

@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: build2-bc
+spec:
+  runPolicy: Serial
+
+  source:
+    git:
+      uri: https://github.com/jonggyoukim/openshift-cicd-demo.git
+
+
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: nodejs:14-ubi7
+        namespace: openshift
+
+  output:
+    to:
+      kind: DockerImage
+      name: "shiftyou/build2-app:last"
+    pushSecret:
+      name: dockerhub
+
+  postCommit:
+      script: "ls"
+
