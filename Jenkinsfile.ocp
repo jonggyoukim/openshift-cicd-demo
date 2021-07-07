@@ -1,6 +1,12 @@
-node('agent') {
-  stage 'build'
-  openshiftBuild(buildConfig: 'build1', showBuildLogs: 'true')
-  stage 'deploy'
-  openshiftDeploy(deploymentConfig: 'demo-git')
+node('') {
+  stage('build') {
+    openshift.withCluster() {
+      openshift.selector("bc", "build1-bc").startBuild()
+    }
+  }
+  stage('deploy') {
+    openshift.withCluster() {
+      openshift.selector("dc", "dc-app").rollout().latest()
+    }
+  }
 }
