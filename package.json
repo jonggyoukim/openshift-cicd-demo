@@ -1,8 +1,8 @@
 {
-  "name": "oke-sample-app",
+  "name": "openshift-cicd-demo",
   "version": "1.0.0",
-  "description": "Node.js on Docker for OKE",
-  "author": "JongGyou Kim <jonggyou.kim@oracle.com>",
+  "description": "Node.js app for OpenShift Demo",
+  "author": "JongGyou Kim <jonggkim@redhat.com>",
   "main": "app.js",
   "private": true,
   "scripts": {

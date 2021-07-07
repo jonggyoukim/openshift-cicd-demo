@@ -1,17 +1,21 @@
-# Node-MySQL sample for Kubernetes
-
-쿠버네티스를 위한 샘플입니다.
+# 쿠버네티스를 데모를 위한 샘플입니다.
 
 node 와 mysql 을 사용한 게시판입니다.
 
 [https://github.com/achowba/node-mysql-crud-app](https://github.com/achowba/node-mysql-crud-app)를 수정했습니다.
 
 
-## MySQL 설정
-~~~
-CREATE USER 'test'@'%' IDENTIFIED WITH mysql_native_password BY 'Welcome1';
+## MySQL 실행
 
-ALTER USER 'test'@'%' IDENTIFIED WITH mysql_native_password BY 'Welcome1';
+~~~
+docker run --name mydb -e MYSQL_ROOT_PASSWORD=mypassword -p 3306:3306 -d mysql:5.6
+~~~
+
+
+## MySQL 설정
+
+~~~
+CREATE USER 'test'@'%' IDENTIFIED BY 'Welcome1';
 
 GRANT USAGE ON *.* TO 'test'@'%';
 
@@ -45,14 +49,4 @@ export MYSQL_SERVICE_DATABASE=sample
 ~~~
 $ npm install
 $ npm start
-~~~
-
-## Docker 이미지 생성
-~~~
-docker build -t sample/demo-sample .
-~~~
-
-## Docker 실행
-~~~
-docker run --name app  -e MYSQL_SERVICE_HOST={MYSQL_IP} -e MYSQL_SERVICE_USER=test -e MYSQL_SERVICE_PASSWORD=Welcome1 -e MYSQL_SERVICE_DATABASE=sample  -p 8080:8080 -it shiftyou/sample
 ~~~
