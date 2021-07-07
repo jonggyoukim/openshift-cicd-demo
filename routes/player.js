@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
     addPlayerPage: (req, res) => {
         res.render('add-player.ejs', {
-            title: "Red Hat Demo App 입니다. | 새로운 맴버 등록"
+            title: "Red Hat Demo App 입니다. | 새로운 멤버 등록"
             ,message: ''
         });
     },
@@ -25,7 +25,7 @@ module.exports = {
                 message = 'Username already exists';
                 res.render('add-player.ejs', {
                     message,
-            		title: "Red Hat Demo App 입니다. | 새로운 맴버 등록"
+            		title: "Red Hat Demo App 입니다. | 새로운 멤버 등록"
                 });
             } else {
                 // send the player's details to the database
