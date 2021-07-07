@@ -20,7 +20,7 @@ spec:
   output:
     to:
       kind: DockerImage
-      name: "shiftyou/build2-app:last"
+      name: "jonggyoukim/build2-app:last"
     pushSecret:
       name: dockerhub
 

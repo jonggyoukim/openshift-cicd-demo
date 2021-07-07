@@ -18,4 +18,4 @@ spec:
   type: image
   params:
     - name: url
-      value: shiftyou/tekton-app:latest
+      value: jonggyoukim/tekton-app:latest

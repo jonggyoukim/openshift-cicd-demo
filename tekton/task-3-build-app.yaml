@@ -97,7 +97,7 @@ spec:
         - "buildah"
       args:
         - "push"
-        - "--creds=shiftyou:gksrkdls1d"
+        - "--creds=shiftyou:{PASSWORD}"
         - "--tls-verify=$(inputs.params.tlsVerify)"
         - $(inputs.params.destinationImage)
         - "docker://$(inputs.params.destinationImage)"
