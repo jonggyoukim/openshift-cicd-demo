@@ -1,6 +1,6 @@
-CREATE USER 'test'@'%' IDENTIFIED WITH mysql_native_password BY 'Welcome1';
+CREATE USER 'test'@'%' IDENTIFIED BY 'Welcome1';
 
-ALTER USER 'test'@'%' IDENTIFIED WITH mysql_native_password BY 'Welcome1';
+ALTER USER 'test'@'%' IDENTIFIED BY 'Welcome1';
 
 GRANT USAGE ON *.* TO 'test'@'%';
 
