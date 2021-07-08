@@ -1,22 +1,19 @@
-pipeline {
-	agent any
-	stages {
-		stage('Clone repository') {
-			steps {
-				sh 'git clone https://github.com/jonggyoukim/openshift-cicd-demo'
-				sh 'ls -l'
-			}
-		}
-		stage('Build image') {
-			steps {
-				sh 'docker build -t jonggyoukim/jenkins-member-app .'
-				sh 'docker images'
-			}
-		}
-		stage ('Push image') {
-			steps {
-				sh 'docker push jonggyoukim/jenkins-member-app'
-			}
-		}
-	}
-}
+ node {
+     def app
+
+     stage('Clone repository') {
+         checkout scm
+     }
+
+     stage('Build image') {
+         app = docker.build("jonggyoukim/jenkins-app")
+     }
+
+     stage('Push image') {
+         docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
+             app.push("${env.BUILD_NUMBER}")
+             app.push("latest")
+         }
+     }
+
+ }
