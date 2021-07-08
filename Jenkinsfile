@@ -9,12 +9,6 @@
          app = docker.build("jonggyoukim/jenkins-app")
      }
 
-     stage('Test image') {
-         app.inside {
-             sh 'echo "Tests passed"'
-         }
-     }
-
      stage('Push image') {
          docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
              app.push("${env.BUILD_NUMBER}")
