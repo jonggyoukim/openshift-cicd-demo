@@ -1,19 +1,15 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: svc-deploy
+  name: tekton-app
 spec:
-  #params:
-  #  - name: contextDir
-  #    description: the context directory from where to build the application
-  #    default: .
   resources:
     - name: appSource
       type: git
     - name: appImage
       type: image
   tasks:
-    - name: build-demo-app
+    - name: build-tekton-app
       taskRef:
         name: build-app
       params:
@@ -30,7 +26,7 @@ spec:
       taskRef:
         name: openshift-client
       runAfter:
-        - build-demo-app
+        - build-tekton-app
       resources:
         inputs:
           - name: source
@@ -40,6 +36,6 @@ spec:
           value:
             - "apply"
             - "-f"
-            - "/workspace/source/yaml/tekton-app-deployment.yaml"
+            - "/workspace/source/tekton/tekton-app-deployment.yaml"
             - "-f"
-            - "/workspace/source/yaml/tekton-app-service.yaml"
+            - "/workspace/source/tekton/tekton-app-service.yaml"
