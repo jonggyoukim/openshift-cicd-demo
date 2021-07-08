@@ -7,8 +7,6 @@ spec:
   params:
     - name: url
       value: https://github.com/jonggyoukim/openshift-cicd-demo
-    - name: revision
-      value: master
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource

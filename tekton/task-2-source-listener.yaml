@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: source-lister
+  name: source-listener
 spec:
   params:
     - name: contextDir
