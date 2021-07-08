@@ -1,7 +1,7 @@
 kind: "BuildConfig"
 apiVersion: "v1"
 metadata:
-  name: build4
+  name: bc4
 spec:
   strategy:
     jenkinsPipelineStrategy:
@@ -9,12 +9,12 @@ spec:
         node('') {
           stage('build') {
             openshift.withCluster() {
-              openshift.selector("bc", "build1-bc").startBuild()
+              openshift.selector("bc", "bc1").startBuild()
             }
           }
           stage('deploy') {
             openshift.withCluster() {
-              openshift.selector("dc", "dc-app").rollout().latest()
+              openshift.selector("dc", "dc1").rollout().latest()
             }
           }
         }

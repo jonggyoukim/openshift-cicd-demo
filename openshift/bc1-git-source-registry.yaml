@@ -1,11 +1,12 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: build2-bc
+  name: bc1
 spec:
   runPolicy: Serial
 
   source:
+    type: Git
     git:
       uri: https://github.com/jonggyoukim/openshift-cicd-demo.git
 
@@ -16,14 +17,15 @@ spec:
         kind: ImageStreamTag
         name: nodejs:14-ubi7
         namespace: openshift
+      env:
+        - name: MYSQL_SERVICE_HOST
+          value: demo-mysql
 
   output:
     to:
-      kind: DockerImage
-      name: "jonggyoukim/build2-app:last"
-    pushSecret:
-      name: dockerhub
+      kind: ImageStreamTag
+      name: bc1-app:latest
+
 
   postCommit:
       script: "ls"
-

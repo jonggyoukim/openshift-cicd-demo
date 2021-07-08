@@ -1,7 +1,7 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: build3-bc
+  name: bc2
 spec:
   runPolicy: Serial
 
@@ -12,17 +12,21 @@ spec:
 
 
   strategy:
-    dockerStrategy:
-      dockerfilePath: Dockerfile
-
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: nodejs:14-ubi7
+        namespace: openshift
+      env:
+        - name: MYSQL_SERVICE_HOST
+          value: demo-mysql
 
   output:
     to:
       kind: DockerImage
-      name: "jonggyoukim/build3-app:last"
+      name: 'jonggyoukim/bc2-app:last'
     pushSecret:
       name: dockerhub
-
 
   postCommit:
       script: "ls"
