@@ -16,7 +16,7 @@
      }
 
      stage('Push image') {
-         docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+         docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
              app.push("${env.BUILD_NUMBER}")
              app.push("latest")
          }
